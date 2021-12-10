@@ -28,13 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
     node.classList.remove('preload-transitions');
 });
 
-function setUtterancetheme(theme) {
-    if (theme == 'dark') {
-        .utterence {
+// function setUtterancetheme(theme) {
+//     if (theme == 'dark') {
+//         .utterence {
             
-        }
-    }
-}
+//         }
+//     }
+// }
 function setTheme(theme) {
     body.classList.remove('colorscheme-auto');
     let inverse = theme === 'dark' ? 'light' : 'dark';
