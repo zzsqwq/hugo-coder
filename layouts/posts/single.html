@@ -22,7 +22,12 @@
             </span>
             <span class="reading-time">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
-              {{ i18n "reading_time" .ReadingTime }}
+              {{ $readTime :=  mul (div (countwords .Content) 220.0) 60 }}
+              {{ $minutes := math.Floor (div $readTime 60) }}
+              <!-- {{ i18n "reading_time" $minutes }} -->
+              <!-- {{$minutes}} -->
+              {{$minutes}}-minute read
+              <!-- {{ $readTime}} -minute read}} -->
             </span>
           </div>
           {{ with .Page.Params.Authors }}{{ partial "taxonomy/authors.html" . }}{{ end }}
