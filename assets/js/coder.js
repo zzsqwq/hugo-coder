@@ -40,6 +40,61 @@ function setTheme(theme) {
     let inverse = theme === 'dark' ? 'light' : 'dark';
     body.classList.remove('colorscheme-' + inverse);
     body.classList.add('colorscheme-' + theme);
+
+    function waitForElm(selector) {
+        return new Promise(resolve => {
+            if (document.querySelector(selector)) {
+                return resolve(document.querySelector(selector));
+            }
+    
+            const observer = new MutationObserver(mutations => {
+                if (document.querySelector(selector)) {
+                    resolve(document.querySelector(selector));
+                    observer.disconnect();
+                }
+            });
+    
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+
+    if (theme === 'dark') {
+        const message = {
+            type: 'set-theme',
+            theme: 'github-dark'
+        };
+        console.log("test dark!!");
+        waitForElm('.utterances-frame').then((iframe) => {
+            iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+        })
+        // setTimeout(() => {
+        //     const iframe = document.querySelector('.utterances-frame');
+        //     console.log("iframe is ", iframe);
+        //     iframe.contentWindow.postMessage(message, 'https://utteranc.es');  
+        //  }, 5000);
+        
+    }
+    if (theme === 'light') {
+        const message = {
+            type: 'set-theme',
+            theme: 'github-light'
+        };
+        console.log("test light!");
+        waitForElm('.utterances-frame').then((iframe) => {
+            iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+        })
+        // setTimeout(() => {
+        //     const iframe = document.querySelector('.utterances-frame');
+        // console.log("iframe is ", iframe);
+        // iframe.contentWindow.postMessage(message, 'https://utteranc.es');  
+        //  }, 5000);
+        
+    }
+     
+
 }
 
 function rememberTheme(theme) {
