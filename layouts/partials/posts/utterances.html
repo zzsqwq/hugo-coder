@@ -1,56 +1,24 @@
-<!-- {{- if isset .Site.Params "utterances" -}}
-  {{- if and (isset .Site.Params.utterances "repo") (not (eq .Site.Params.utterances.repo "" )) (eq (.Params.disable_comments | default false) false) -}}
-  <script src="https://utteranc.es/client.js"
-    repo= "{{ .Site.Params.utterances.repo }}"
-    issue-term="{{ default "title" .Site.Params.utterances.issueTerm }}"
-    {{ if isset .Site.Params.utterances "label" }}label="{{ .Site.Params.utterances.label }}"{{ end }}
-    theme="{{ default "github-light" .Site.Params.utterances.theme }}"
-    crossorigin="anonymous"
-    async>
-  </script>
-  {{- end -}}
-{{- end -}} -->
-
 {{- if isset .Site.Params "utterances" -}}
-
-<div class="comments">
+  {{- if and (isset .Site.Params.utterances "repo") (not (eq .Site.Params.utterances.repo "" )) (eq (.Params.disable_comments | default false) false) -}}
+  <div class="comments">
   <script>
-      // load utteranc comment
-      var getTheme = window.localStorage && window.localStorage.getItem("colorscheme");
-      let now_theme = document.body.classList.contains("colorscheme-dark") ? "dark" : "light";
-      // getTheme = getTheme == null ? '{{$.Site.Params.utterances.theme}}' : getTheme;
-      getTheme = getTheme == null ? now_theme : getTheme;
-      
 
-      let theme = getTheme === 'dark' ? 'github-dark' : 'github-light';
-      let s = document.createElement('script');
-      s.src = 'https://utteranc.es/client.js';
-      s.setAttribute('repo', '{{ .Site.Params.utterances.repo }}');
-      s.setAttribute('issue-term', '{{ default "title" .Site.Params.utterances.issueTerm }}');
-      s.setAttribute('theme', theme);
-      s.setAttribute('crossorigin', 'anonymous');
-      s.setAttribute('async', '');
-      document.querySelector('div.comments').innerHTML = '';
-      document.querySelector('div.comments').appendChild(s);
+  let getTheme = window.localStorage && window.localStorage.getItem("colorscheme");
 
-      // auto swith utteranc theme by body class change
-      // const mutationObserver = new MutationObserver((mutationsList, observer) => {
-      //     mutationsList.forEach(mutation => {
-      //         if (mutation.attributeName === "class") {
-      //             if (document.querySelector('.utterances-frame')) {
-      //                 const theme = mutation.target.classList.contains("dark-theme") ? 'github-dark' : 'github-light'
-      //                 const message = {
-      //                     type: 'set-theme',
-      //                     theme: theme
-      //                 };
-      //                 const iframe = document.querySelector('.utterances-frame');
-      //                 iframe.contentWindow.postMessage(message, 'https://utteranc.es');
-      //             }
-      //         }
-      //     })
-      // });
-      // mutationObserver.observe(document.body, { attributes: true });
+  getTheme = getTheme == null ? '{{$.Site.Params.utterances.theme}}' : getTheme;
+  
+  let theme = getTheme === 'dark' ? 'github-dark' : 'github-light';
+  let s = document.createElement('script');
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', '{{ .Site.Params.utterances.repo }}');
+  s.setAttribute('issue-term', '{{ default "title" .Site.Params.utterances.issueTerm }}');
+  s.setAttribute('theme', theme);
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  document.querySelector('div.comments').innerHTML = '';
+  document.querySelector('div.comments').appendChild(s);
+
   </script>
-</div>
-
+  </div>
+  {{- end -}}
 {{- end -}}

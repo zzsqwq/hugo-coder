@@ -53,7 +53,7 @@ function setTheme(theme) {
                     observer.disconnect();
                 }
             });
-    
+
             observer.observe(document.body, {
                 childList: true,
                 subtree: true
@@ -66,35 +66,22 @@ function setTheme(theme) {
             type: 'set-theme',
             theme: 'github-dark'
         };
-        console.log("test dark!!");
         waitForElm('.utterances-frame').then((iframe) => {
             iframe.contentWindow.postMessage(message, 'https://utteranc.es');
         })
-        // setTimeout(() => {
-        //     const iframe = document.querySelector('.utterances-frame');
-        //     console.log("iframe is ", iframe);
-        //     iframe.contentWindow.postMessage(message, 'https://utteranc.es');  
-        //  }, 5000);
         
     }
-    if (theme === 'light') {
+    else {
         const message = {
             type: 'set-theme',
             theme: 'github-light'
         };
-        console.log("test light!");
         waitForElm('.utterances-frame').then((iframe) => {
             iframe.contentWindow.postMessage(message, 'https://utteranc.es');
         })
-        // setTimeout(() => {
-        //     const iframe = document.querySelector('.utterances-frame');
-        // console.log("iframe is ", iframe);
-        // iframe.contentWindow.postMessage(message, 'https://utteranc.es');  
-        //  }, 5000);
         
     }
      
-
 }
 
 function rememberTheme(theme) {
