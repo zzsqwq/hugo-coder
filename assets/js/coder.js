@@ -40,6 +40,7 @@ function setTheme(theme) {
     let inverse = theme === 'dark' ? 'light' : 'dark';
     body.classList.remove('colorscheme-' + inverse);
     body.classList.add('colorscheme-' + theme);
+    document.documentElement.style['color-scheme'] = theme;
 
     function waitForElm(selector) {
         return new Promise(resolve => {
@@ -82,6 +83,8 @@ function setTheme(theme) {
         
     }
      
+    
+
 }
 
 function rememberTheme(theme) {
