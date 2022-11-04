@@ -89,7 +89,7 @@ function setTheme(theme) {
             }
         };
         waitForElm('iframe.giscus-frame').then((iframe) => {
-            iframe.contentWindow.postMessage(message, 'https://giscus.app');
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
         })
         
     }
@@ -100,7 +100,7 @@ function setTheme(theme) {
             }
         };
         waitForElm('iframe.giscus-frame').then((iframe) => {
-            iframe.contentWindow.postMessage(message, 'https://giscus.app');
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
         })
     }
 }
