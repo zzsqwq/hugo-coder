@@ -1,24 +1,24 @@
 {{- if isset .Site.Params "giscus" -}}
-  {{- if and (not (eq .Site.Params.giscus.dataRepo "" )) (eq (.Params.disableComments | default false) false) -}}
+  {{- if and (isset .Site.Params.giscus "repo") (not (eq .Site.Params.giscus.repo "" )) (eq (.Params.disableComments | default false) false) -}}
   <div class="comments">
   <script>
 
   let getTheme = window.localStorage && window.localStorage.getItem("colorscheme");
 
-  getTheme = getTheme == null ? '{{$.Site.Params.giscus.dataTheme}}' : getTheme;
+  getTheme = getTheme == null ? 'light' : getTheme;
   
   let theme = getTheme === 'dark' ? 'dark' : 'light';
   let s = document.createElement('script');
   s.src = 'https://giscus.app/client.js';
-  s.setAttribute('data-repo', '{{ .Site.Params.giscus.dataRepo }}');
-  s.setAttribute('data-repo-id', '{{ .Site.Params.giscus.dataRepoId }}');
-  s.setAttribute('data-category', '{{ .Site.Params.giscus.dataCategory }}');
-  s.setAttribute('data-category-id', '{{ .Site.Params.giscus.dataCategoryId }}');
-  s.setAttribute('data-mapping', '{{ .Site.Params.giscus.dataMapping }}');
-  s.setAttribute('data-strict', '{{ .Site.Params.giscus.dataStrict }}');
-  s.setAttribute('data-reactions-enabled', '{{ .Site.Params.giscus.dataReactionsEnabled }}');
-  s.setAttribute('data-emit-metadata', '{{ .Site.Params.giscus.dataEmitMetadata }}');
-  s.setAttribute('data-input-position', '{{ .Site.Params.giscus.dataInputPosition }}');
+  s.setAttribute('data-repo', '{{ .Site.Params.giscus.repo }}');
+  s.setAttribute('data-repo-id', '{{ .Site.Params.giscus.repoId }}');
+  s.setAttribute('data-category', '{{ .Site.Params.giscus.category }}');
+  s.setAttribute('data-category-id', '{{ .Site.Params.giscus.categoryId }}');
+  s.setAttribute('data-mapping', '{{ .Site.Params.giscus.mapping }}');
+  s.setAttribute('data-strict', '{{ .Site.Params.giscus.strict }}');
+  s.setAttribute('data-reactions-enabled', '{{ .Site.Params.giscus.reactionsEnabled }}');
+  s.setAttribute('data-emit-metadata', '{{ .Site.Params.giscus.emitMetadata }}');
+  s.setAttribute('data-input-position', '{{ .Site.Params.giscus.inputPosition }}');
   s.setAttribute('data-theme', theme);
   s.setAttribute('data-lang', '{{ .Site.Params.giscus.dataLang }}');
   s.setAttribute('crossorigin', '{{ .Site.Params.giscus.crossorigin }}');
