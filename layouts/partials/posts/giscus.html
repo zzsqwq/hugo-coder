@@ -5,9 +5,8 @@
 
   let getTheme = window.localStorage && window.localStorage.getItem("colorscheme");
 
-  getTheme = getTheme == null ? 'light' : getTheme;
+  getTheme = getTheme == null ? 'preferred_color_scheme' : getTheme;
   
-  let theme = getTheme === 'dark' ? 'dark' : 'light';
   let s = document.createElement('script');
   s.src = 'https://giscus.app/client.js';
   s.setAttribute('data-repo', '{{ .Site.Params.giscus.repo }}');
@@ -19,7 +18,7 @@
   s.setAttribute('data-reactions-enabled', '{{ .Site.Params.giscus.reactionsEnabled }}');
   s.setAttribute('data-emit-metadata', '{{ .Site.Params.giscus.emitMetadata }}');
   s.setAttribute('data-input-position', '{{ .Site.Params.giscus.inputPosition }}');
-  s.setAttribute('data-theme', "preferred_color_scheme");
+  s.setAttribute('data-theme', getTheme);
   s.setAttribute('data-lang', '{{ .Site.Params.giscus.dataLang }}');
   s.setAttribute('crossorigin', '{{ .Site.Params.giscus.crossorigin }}');
   s.setAttribute('async', '');
